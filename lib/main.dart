@@ -18,7 +18,7 @@ void main() async {
   SystemChrome.setSystemUIOverlayStyle(
       const SystemUiOverlayStyle(statusBarColor: primaryContainerColor));
   runApp(ChangeNotifierProvider<Repository<TaskEntity>>(
-      create: (context) {
+      create: (BuildContext context) {
         return Repository<TaskEntity>(
             HiveTaskDataSource(Hive.box(taskBoxName)));
       },

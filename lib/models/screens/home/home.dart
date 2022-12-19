@@ -77,17 +77,21 @@ class HomeScreen extends StatelessWidget {
                                   color: Colors.black.withOpacity(0.1),
                                   blurRadius: 20)
                             ]),
-                        child: TextField(
-                          onChanged: (value) {
-                            context
-                                .read<TaskListBloc>()
-                                .add(TaskListSearch(value));
-                          },
-                          controller: textEditingController,
-                          decoration: const InputDecoration(
-                              border: InputBorder.none,
-                              prefixIcon: Icon(CupertinoIcons.search),
-                              label: Text('Search tasks ...')),
+                        child: Builder(
+                          builder: ((context) {
+                            return TextField(
+                              onChanged: (value) {
+                                context
+                                    .read<TaskListBloc>()
+                                    .add(TaskListSearch(value));
+                              },
+                              controller: textEditingController,
+                              decoration: const InputDecoration(
+                                  border: InputBorder.none,
+                                  prefixIcon: Icon(CupertinoIcons.search),
+                                  label: Text('Search tasks ...')),
+                            );
+                          }),
                         ),
                       )
                     ],
@@ -95,7 +99,7 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
               Expanded(child: Consumer<Repository<TaskEntity>>(
-                builder: (context, value, child) {
+                builder: (context, repository, child) {
                   context.read<TaskListBloc>().add(TaskListStarted());
                   return BlocBuilder<TaskListBloc, TaskListState>(
                     builder: (context, state) {
