@@ -11,7 +11,7 @@ class TaskListBloc extends Bloc<TaskListEvent, TaskListState> {
   TaskListBloc(this.repository) : super(TaskListInitial()) {
     on<TaskListEvent>((event, emit) async {
       if (event is TaskListStarted || event is TaskListSearch) {
-        final String searchTerm;
+        final String searchTerm;      
 
         emit(TaskListLoading());
 
